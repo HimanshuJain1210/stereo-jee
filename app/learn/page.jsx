@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import IupacSection from './IupacSection'
+import IsomerismSection from './IsomerismSection'
 
 // ─── QUIZ DATA ───────────────────────────────────────────────────────────────
 const QUIZ = [
@@ -149,8 +150,7 @@ export default function LearnPage() {
   const navItems = [
     { id:'home', icon:'🏠', label:'Home' },
     { id:'basics', icon:'🌳', label:'Isomers Overview' },
-    { id:'geometric', icon:'⚡', label:'Geometric Isomerism' },
-    { id:'optical', icon:'🪞', label:'Optical Isomerism' },
+    { id:'isomerism', icon:'🔬', label:'Optical & Geometric', badge:'Updated' },
     { id:'projections', icon:'📐', label:'Projections & 3D' },
     { id:'conformational', icon:'🔄', label:'Conformational' },
     { id:'counting', icon:'🔢', label:'Counting Isomers' },
@@ -885,7 +885,7 @@ export default function LearnPage() {
     </div>
   )
 
-  const sections = { home:<SectionHome/>, basics:<SectionBasics/>, geometric:<SectionGeometric/>, optical:<SectionOptical/>, projections:<SectionProjections/>, conformational:<SectionConformational/>, counting:<SectionCounting/>, iupac:<IupacSection S={S}/>, quiz:<SectionQuiz/>, doubt:<SectionDoubt/> }
+  const sections = { home:<SectionHome/>, basics:<SectionBasics/>, isomerism:<IsomerismSection/>, projections:<SectionProjections/>, conformational:<SectionConformational/>, counting:<SectionCounting/>, iupac:<IupacSection S={S}/>, quiz:<SectionQuiz/>, doubt:<SectionDoubt/> }
 
   if (!studentName) return <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'100vh',fontFamily:"'Plus Jakarta Sans',sans-serif"}}>Loading...</div>
 
@@ -911,7 +911,7 @@ export default function LearnPage() {
             </div>
           ))}
           <div style={{color:'rgba(168,180,204,.35)',fontSize:'.62rem',letterSpacing:'3px',textTransform:'uppercase',padding:'14px 20px 5px',fontFamily:"'Fira Code',monospace"}}>Core Chapters</div>
-          {navItems.slice(2,7).map(n=>(
+          {navItems.slice(2,6).map(n=>(
             <div key={n.id} onClick={()=>{setSection(n.id);setSidebarOpen(false)}} style={S.navItem(n.id)}>
               <span style={{width:'20px',textAlign:'center',fontSize:'.95rem'}}>{n.icon}</span>
               {n.label}
@@ -919,7 +919,7 @@ export default function LearnPage() {
             </div>
           ))}
           <div style={{color:'rgba(168,180,204,.35)',fontSize:'.62rem',letterSpacing:'3px',textTransform:'uppercase',padding:'14px 20px 5px',fontFamily:"'Fira Code',monospace"}}>Problem Solving</div>
-          {navItems.slice(7).map(n=>(
+          {navItems.slice(6).map(n=>(
             <div key={n.id} onClick={()=>{setSection(n.id);setSidebarOpen(false)}} style={S.navItem(n.id)}>
               <span style={{width:'20px',textAlign:'center',fontSize:'.95rem'}}>{n.icon}</span>
               {n.label}
