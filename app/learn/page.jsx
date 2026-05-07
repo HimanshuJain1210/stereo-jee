@@ -56,8 +56,8 @@ export default function LearnPage() {
     setChatMessages([{ role:'assistant', content:`Hi ${name}! 👋 I'm your JEE Chemistry tutor. Ask me anything about stereoisomerism or any other JEE chemistry topic!` }])
   }, [router])
 
-  useEffect(() => { drawNewman(canvasRef, newmanAngle, false) }, [newmanAngle])
-  useEffect(() => { drawNewman(butaneRef, butaneAngle, true) }, [butaneAngle])
+  useEffect(() => { setTimeout(() => drawNewman(canvasRef, newmanAngle, false), 80) }, [newmanAngle, section, activeProjection])
+  useEffect(() => { setTimeout(() => drawNewman(butaneRef, butaneAngle, true), 80) }, [butaneAngle, section, activeProjection])
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [chatMessages])
 
   // ─── NEWMAN CANVAS ────────────────────────────────────────────────────────
