@@ -160,7 +160,7 @@ export default function LearnPage() {
   // ─── STYLES ────────────────────────────────────────────────────────────────
   const S = {
     wrap:{display:'flex',minHeight:'100vh',fontFamily:"'Plus Jakarta Sans',sans-serif",background:'#F7F4EE',color:'#1A1E2E'},
-    sidebar:{width:'255px',background:'#1A1E2E',position:'fixed',top:0,left:0,bottom:0,overflowY:'auto',zIndex:100,display:'flex',flexDirection:'column',transition:'transform .3s',transform: sidebarOpen || window?.innerWidth>768 ? 'translateX(0)':'translateX(-100%)'},
+    sidebar:{width:'255px',background:'#1A1E2E',position:'fixed',top:0,left:0,bottom:0,overflowY:'auto',zIndex:100,display:'flex',flexDirection:'column',transition:'transform .3s'},
     logo:{padding:'26px 20px 18px',borderBottom:'1px solid rgba(255,255,255,.07)'},
     logoH:{fontFamily:"'Playfair Display',serif",color:'#fff',fontSize:'1.1rem',lineHeight:1.3},
     logoSub:{color:'#00C4A7',fontSize:'.62rem',fontFamily:"'Fira Code',monospace",letterSpacing:'2px',textTransform:'uppercase',marginTop:'4px'},
