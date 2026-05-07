@@ -396,7 +396,7 @@ export default function LearnPage() {
 
       <div style={S.ibox}>
         <div style={S.iboxTitle}>Practice: Assign R or S to CHFClBr</div>
-        <p style={{fontSize:'.82rem',color:'#6B7A99',marginBottom:'14px'}}>Priorities: Br(35) > Cl(17) > F(9) > H(1) — H (④) is on a dash bond (pointing away ✓)</p>
+        <p style={{fontSize:'.82rem',color:'#6B7A99',marginBottom:'14px'}}>Priorities: Br(35) &gt; Cl(17) &gt; F(9) &gt; H(1) — H (④) is on a dash bond (pointing away ✓)</p>
         <svg viewBox="0 0 280 180" style={{width:'100%',maxHeight:'180px'}}>
           <defs><marker id="ra" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#C97A0A"/></marker></defs>
           <circle cx="140" cy="90" r="18" fill="#1A1E2E"/>
