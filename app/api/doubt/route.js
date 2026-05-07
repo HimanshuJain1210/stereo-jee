@@ -2,6 +2,11 @@ export async function POST(request) {
   try {
     const { messages, studentName } = await request.json();
 
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) {
+      return Response.json({ error: "API key not configured. Please add OPENROUTER_API_KEY in Vercel environment variables." }, { status: 500 });
+    }
+
     const systemPrompt = [
       "You are a JEE Chemistry expert tutor helping " + (studentName || "a student") + " prepare for JEE Mains and Advanced.",
       "",
@@ -20,10 +25,10 @@ export async function POST(request) {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + process.env.OPENROUTER_API_KEY,
+        "Authorization": "Bearer " + apiKey,
         "Content-Type": "application/json",
         "HTTP-Referer": "https://stereo-jee.vercel.app",
-        "X-Title": "StereoJEE Chemistry Tutor"
+        "X-Title": "StereoJEE"
       },
       body: JSON.stringify({
         model: "google/gemini-2.0-flash-exp:free",
@@ -36,16 +41,17 @@ export async function POST(request) {
       })
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const err = await response.text();
-      return Response.json({ error: "AI service error", detail: err }, { status: 500 });
+      const detail = data?.error?.message || data?.error || JSON.stringify(data);
+      return Response.json({ error: "OpenRouter error: " + detail }, { status: 500 });
     }
 
-    const data = await response.json();
     const reply = data.choices?.[0]?.message?.content || "Sorry, no response received.";
     return Response.json({ reply });
 
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json({ error: "Server error: " + error.message }, { status: 500 });
   }
 }
